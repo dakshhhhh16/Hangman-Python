@@ -1,5 +1,54 @@
-#Step-1 Choose and assign a word to be guessed
-
+Stages = ['''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========''']
+lives = 6
 world_list = ["python", "java", "kotlin", "javascript"]
 import random
 chosen_word = random.choice(world_list)
@@ -18,8 +67,10 @@ correct_letter = [ ]
 while not game_over:
     guess = input ("Guess a letter: ").lower()
 
+ 
 
-    #Step-3 Changing the for loop so that it checks each letter in the chosen word keeping the correct guesses
+
+#Step-3 Changing the for loop so that it checks each letter in the chosen word keeping the correct guesses
     display= ""
     for letter in chosen_word:
         if letter == guess:
@@ -31,7 +82,18 @@ while not game_over:
             display += "_"
     print(display)
 
+    if guess not in chosen_word:
+        lives -= 1
+        print(f"You have {lives} lives left.")
+        if lives == 0:
+            game_over = True
+            print("You lose.") 
+
+
+
 
     if "_" not in display:
         game_over = True
         print("You win.") 
+
+    print(Stages[6 - lives])
