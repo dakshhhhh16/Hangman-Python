@@ -20,11 +20,9 @@ guessed_letters = []
 
 while not game_over:
     guess = input ("Guess a letter: ").lower()
-    # if the player already guessed this letter (correct or incorrect), don't penalize
     if guess in guessed_letters:
         print(f"You have already guessed {guess}.")
         continue
-    # record this guess so future repeats won't reduce lives
     guessed_letters.append(guess)
     display= ""
     for letter in chosen_word:
