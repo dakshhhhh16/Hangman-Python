@@ -1,60 +1,13 @@
-Stages = ['''
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-=========''']
 lives = 6
-world_list = ["python", "java", "kotlin", "javascript"]
 import random
-chosen_word = random.choice(world_list)
-print(chosen_word)
+import hangman_words
+import hangman_art
+from hangman_art import logo
 
-#Step-2 Blank to be filled in by user
+print(logo)
+
+chosen_word = random.choice(hangman_words.word_list)
+
 placeholder = ""
 word_length = len(chosen_word)
 for position in range(word_length):
@@ -67,10 +20,8 @@ correct_letter = [ ]
 while not game_over:
     guess = input ("Guess a letter: ").lower()
 
- 
-
-
-#Step-3 Changing the for loop so that it checks each letter in the chosen word keeping the correct guesses
+    if guess in correct_letter:
+        print(f"You have already guessed {guess} " ) 
     display= ""
     for letter in chosen_word:
         if letter == guess:
@@ -87,8 +38,7 @@ while not game_over:
         print(f"You have {lives} lives left.")
         if lives == 0:
             game_over = True
-            print("You lose.") 
-
+            print("You lose.", f"The word was {chosen_word}.") 
 
 
 
@@ -96,4 +46,4 @@ while not game_over:
         game_over = True
         print("You win.") 
 
-    print(Stages[6 - lives])
+    print(hangman_art.Stages[6 - lives])
